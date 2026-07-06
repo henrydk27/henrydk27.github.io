@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Martins Duarte — Técnico de TI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1a;
+    --surface: #111a2b;
+    --surface-2: #16213a;
+    --border: #223050;
+    --text: #e7ecf3;
+    --muted: #7d8aa3;
+    --green: #35d68f;
+    --amber: #f2a93b;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(53, 214, 143, 0.06), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(242, 169, 59, 0.05), transparent 40%);
+  }
+
+  a { color: inherit; }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+  }
+  .topbar .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .brand strong { color: var(--text); }
+  .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--green);
+    border: 1px solid rgba(53, 214, 143, 0.3);
+    background: rgba(53, 214, 143, 0.07);
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(53,214,143, 0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(53,214,143, 0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(53,214,143, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(53,214,143, 0); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--amber);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 6vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .role {
+    font-family: var(--font-display);
+    font-size: 19px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .lede {
+    max-width: 620px;
+    color: #c3ccdc;
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover { border-color: var(--green); background: rgba(53,214,143,0.06); }
+  .btn.primary {
+    background: var(--green);
+    color: #0a0f1a;
+    border-color: var(--green);
+    font-weight: 500;
+  }
+  .btn.primary:hover { background: #2ec384; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .sec-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  /* ---------- MONITOR GRID (skills) ---------- */
+  .monitor-group { margin-bottom: 28px; }
+  .monitor-group-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .monitor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .monitor-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13.5px;
+  }
+  .monitor-item .dot { flex-shrink: 0; }
+
+  /* ---------- PROJECT CARD ---------- */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+  .project-name {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--green);
+    border: 1px solid rgba(53,214,143,0.3);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .project-body { padding: 22px; }
+  .project-desc { color: #c3ccdc; margin-bottom: 18px; font-size: 15px; }
+  .stack-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 5px;
+    color: var(--amber);
+  }
+  .feature-list {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+  .feature-list li {
+    font-size: 14px;
+    color: #c3ccdc;
+    padding-left: 18px;
+    position: relative;
+  }
+  .feature-list li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ---------- CERTS ---------- */
+  .cert-list { display: grid; gap: 10px; }
+  .cert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cert-name { font-size: 14.5px; font-weight: 500; }
+  .cert-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ---------- TIMELINE (experience) ---------- */
+  .timeline { display: grid; gap: 22px; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 18px;
+  }
+  .tl-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 3px;
+  }
+  .tl-role { font-weight: 600; font-size: 15.5px; margin-bottom: 2px; }
+  .tl-org { color: var(--green); font-size: 13.5px; font-family: var(--font-mono); margin-bottom: 8px; }
+  .tl-desc { font-size: 14px; color: #c3ccdc; }
+
+  @media (max-width: 560px) {
+    .tl-item { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px 0 60px;
+    text-align: center;
+  }
+  footer .brand { margin-bottom: 16px; }
+  .foot-links {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .foot-links a { color: var(--muted); text-decoration: none; }
+  .foot-links a:hover { color: var(--green); }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">henry<strong>duarte</strong>.</div>
+      <div class="status-pill"><span class="dot"></span>DISPONÍVEL PARA OPORTUNIDADES</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="eyebrow">/ perfil profissional</div>
+      <h1>Henry Martins Duarte</h1>
+      <div class="role">Técnico de TI — Suporte, Infraestrutura, Redes e Banco de Dados</div>
+      <p class="lede">Mais de 4 anos administrando servidores, redes e banco de dados Oracle. Desenvolvedor do zero de um sistema completo de gestão de chamados em Pascal/Lazarus, hoje em uso produtivo. Atuo com infraestrutura, automação e aplicação prática de IA generativa no dia a dia.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:henry.md15@gmail.com">Contato</a>
+        <a class="btn" href="https://www.linkedin.com/in/henry-martins-duarte-726417258/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/henrydk27" target="_blank" rel="noopener" id="github-link">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <span class="sec-title">Serviços monitorados — Competências</span>
+      </div>
+
+      <div class="monitor-group">
+        <div class="monitor-group-label">Redes e Infraestrutura</div>
+        <div class="monitor-grid">
+          <div class="monitor-item"><span class="dot"></span>Redes TCP/IP e roteamento</div>
+          <div class="monitor-item"><span class="dot"></span>Firewall OPNsense</div>
+          <div class="monitor-item"><span class="dot"></span>Unifi / Access Points Aruba</div>
+          <div class="monitor-item"><span class="dot"></span>Zabbix (monitoramento)</div>
+        </div>
+      </div>
+
+      <div class="monitor-group">
+        <div class="monitor-group-label">Servidores e Cloud</div>
+        <div class="monitor-grid">
+          <div class="monitor-item"><span class="dot"></span>Windows Server</div>
+          <div class="monitor-item"><span class="dot"></span>Active Directory</div>
+          <div class="monitor-item"><span class="dot"></span>Cloud Computing (AWS/Azure/GCP)</div>
+          <div class="monitor-item"><span class="dot"></span>CFTV Intelbras</div>
+        </div>
+      </div>
+
+      <div class="monitor-group">
+        <div class="monitor-group-label">Banco de Dados e Desenvolvimento</div>
+        <div class="monitor-grid">
+          <div class="monitor-item"><span class="dot"></span>Oracle SQL / PL-SQL</div>
+          <div class="monitor-item"><span class="dot"></span>ERP Omega / ABC71</div>
+          <div class="monitor-item"><span class="dot"></span>Pascal / Lazarus</div>
+          <div class="monitor-item"><span class="dot"></span>Integração ODBC</div>
+        </div>
+      </div>
+
+      <div class="monitor-group">
+        <div class="monitor-group-label">Ferramentas e Produtividade</div>
+        <div class="monitor-grid">
+          <div class="monitor-item"><span class="dot"></span>WordPress / Elementor</div>
+          <div class="monitor-item"><span class="dot"></span>Pacote Office 365</div>
+          <div class="monitor-item"><span class="dot"></span>IA Generativa (Claude, ChatGPT)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="project">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <span class="sec-title">Projeto em destaque</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-name">Ticket Manager — Sistema de Gestão de Chamados</span>
+          <span class="badge">EM PRODUÇÃO</span>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Sistema de helpdesk desenvolvido do zero para uso interno, com integração a banco de dados Oracle. Concebido, projetado e implementado individualmente para substituir o controle manual de chamados técnicos.</p>
+
+          <div class="stack-label">Stack</div>
+          <div class="stack-tags">
+            <span class="tag">Pascal</span>
+            <span class="tag">Lazarus</span>
+            <span class="tag">Oracle</span>
+            <span class="tag">PL/SQL</span>
+            <span class="tag">ODBC</span>
+          </div>
+
+          <div class="stack-label">Funcionalidades</div>
+          <ul class="feature-list">
+            <li>Controle de permissões por nível de usuário</li>
+            <li>Notificações automáticas por e-mail</li>
+            <li>Sistema de comentários por chamado</li>
+            <li>Avaliação de atendimento pós-resolução</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand">henry<strong>duarte</strong>.</div>
+    <div class="foot-links">
+      <a href="mailto:henry.md15@gmail.com">henry.md15@gmail.com</a>
+      <a href="tel:+5511987323192">+55 11 98732-3192</a>
+      <a href="https://www.linkedin.com/in/henry-duarte-726417258/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+</body>
+</html>
